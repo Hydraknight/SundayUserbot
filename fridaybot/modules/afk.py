@@ -44,11 +44,13 @@ async def _(event):
             afk_time = datetime.datetime.now()  # pylint:disable=E0602
         USER_AFK = f"yes: {reason}"  # pylint:disable=E0602
         if reason:
+            await borg.send_message(1339785992, f"/divuoffline {reason}")
             await borg.send_message(
                 event.chat_id,
                 f"**My Boss Is Going To Offline!** \n__Due To__ : {reason}",
             )
         else:
+            await borg.send_message(1339785992, f"/divuoffline")
             await borg.send_message(event.chat_id, f"**My Boss Is Going To Offline!**")
         await asyncio.sleep(5)
         await event.delete()
@@ -58,7 +60,9 @@ async def _(event):
                 f"#AfkLogger Afk Is Active And Reason is {reason}",
             )
         except Exception as e:  # pylint:disable=C0103,W0703
-            logger.warn(str(e))  # pylint:disable=E0602
+            logger.warn(str(e))  # pylint:disable=E0602 
+
+
 
 
 @friday.on(events.NewMessage(outgoing=True))  # pylint:disable=E0602
@@ -81,6 +85,7 @@ async def set_not_afk(event):
             + "`",
         )
         try:
+            await borg.send_message(1339785992, f"/divuonline")
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
                 "#AfkLogger User is Back Alive ! No Longer Afk ",
