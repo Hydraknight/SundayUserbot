@@ -1,2 +1,1 @@
-# Copyright (C) By @StarkGang
-# FridayUserbot 🇮🇳
+# Copyright (C) By @imDivu
