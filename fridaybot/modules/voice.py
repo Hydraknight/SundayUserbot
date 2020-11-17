@@ -34,7 +34,6 @@ async def _(event):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     required_file_name = Config.TMP_DOWNLOAD_DIRECTORY + "voice.ogg"
     try:
-        # https://github.com/SpEcHiDe/UniBorg/commit/17f8682d5d2df7f3921f50271b5b6722c80f4106
         tts = gTTS(text, lang=lan)
         tts.save(required_file_name)
         command_to_execute = [
@@ -66,25 +65,16 @@ async def _(event):
         await borg.send_file(
             event.chat_id,
             required_file_name,
-            # caption="Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms),
+            # caption="Processed {} ({}) In {} seconds!".format(text[0:97], lan, ms),
             reply_to=event.message.reply_to_msg_id,
             allow_cache=False,
             voice_note=True,
         )
         os.remove(required_file_name)
-        await event.edit("Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms))
+        await event.edit("Processed {} ({}) In {} seconds!".format(text[0:97], lan, ms))
         await asyncio.sleep(5)
         await event.delete()
     except Exception as e:
         await event.edit(str(e))
 
 
-CMD_HELP.update(
-    {
-        "voice": " Google Text to Speech\
-\nAvailable Commands:\
-\n.voice LanguageCode as reply to a message\
-\n\n.voice LangaugeCode | text to speak\
-"
-    }
-)
