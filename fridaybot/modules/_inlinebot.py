@@ -14,7 +14,7 @@ if PMPERMIT_PIC is None:
 else:
     WARN_PIC = PMPERMIT_PIC
 LOG_CHAT = Config.PRIVATE_GROUP_ID
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Friday"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Divu"
 if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
@@ -22,7 +22,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
         builder = event.builder
         result = None
         query = event.text
-        if event.query.user_id == bot.uid and query.startswith("Friday"):
+        if event.query.user_id == bot.uid and query.startswith("Divu"):
             rev_text = query[::-1]
             buttons = paginate_help(0, CMD_LIST, "helpme")
             result = builder.article(
@@ -34,7 +34,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
         if event.query.user_id == bot.uid and query == "stats":
             result = builder.article(
                 title="Stats",
-                text=f"**Showing Stats For {DEFAULTUSER}'s Friday** \nNote --> Only Owner Can Check This \n(C) @FridayOT",
+                text=f"**Showing Stats For {DEFAULTUSER}** \nNote --> Only Owner Can Check This \n(C) @imDivu",
                 buttons=[
                     [custom.Button.inline("Show Stats ", data="terminator")],
                     [
@@ -205,10 +205,10 @@ def paginate_help(page_number, loaded_modules, prefix):
         ] + [
             (
                 custom.Button.inline(
-                    "Previous", data="{}_prev({})".format(prefix, modulo_page)
+                    "⌫", data="{}_prev({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline(
-                    "Next", data="{}_next({})".format(prefix, modulo_page)
+                    "⌦", data="{}_next({})".format(prefix, modulo_page)
                 ),
             )
         ]
