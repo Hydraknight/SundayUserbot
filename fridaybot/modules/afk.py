@@ -1,5 +1,4 @@
-"""AFK Plugin for @FridayOT
-Syntax: .afk REASON"""
+
 import asyncio
 import datetime
 from datetime import datetime
@@ -31,6 +30,7 @@ async def _(event):
     global afk_end
     global reason
     USER_AFK = {}
+    AFK_STICKER = ['CAACAgUAAxkBAAEG17xfs6PXneEr-TsBaa01tiP--d3PygACiQEAAvAi8zUuJyuHjHvB2B4E']
     afk_time = None
     last_afk_message = {}
     afk_end = {}
@@ -47,10 +47,10 @@ async def _(event):
         if reason:
             await borg.send_message(
                 event.chat_id,
-                f"**My Master Seems To Be Too Busy 👀.** \n__He Going Afk Because Of__ `{reason}`",
+                f"**My Boss Is Going To Offline!** \n__Due To__ : {reason}",
             )
         else:
-            await borg.send_message(event.chat_id, f"**I Am Busy And I Am Going Afk**.")
+            await borg.send_sticker(event.chat_id, AFK_STICKER)
         await asyncio.sleep(5)
         await event.delete()
         try:
@@ -77,7 +77,7 @@ async def set_not_afk(event):
     if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
         shite = await borg.send_message(
             event.chat_id,
-            "__Pro is Back Alive__\n**No Longer afk.**\n `I Was afk for:``"
+            "__Pro is Back Alive__\n**No Longer AFK!**\n `I Was afk for:``"
             + total_afk_time
             + "`",
         )
@@ -91,7 +91,7 @@ async def set_not_afk(event):
                 event.chat_id,
                 "Please set `PRIVATE_GROUP_ID` "
                 + "for the proper functioning of afk functionality "
-                + "Please Seek Support in @FridayOT\n\n `{}`".format(str(e)),
+                + "@imDivu\n\n `{}`".format(str(e)),
                 reply_to=event.message.id,
                 silent=True,
             )
@@ -118,7 +118,7 @@ async def on_afk(event):
     afk_end = back_alivee.replace(microsecond=0)
     if afk_start != {}:
         total_afk_time = str((afk_end - afk_start))
-    afk_since = "**a while ago**"
+    afk_since = "**Recently**"
     current_message_text = event.message.message.lower()
     if "afk" in current_message_text:
         # fridaybot's should not reply to other fridaybot's
@@ -155,10 +155,9 @@ async def on_afk(event):
                 f"`{int(seconds)}s` **ago**"
         msg = None
         message_to_reply = (
-            f"**My Boss is Afk**  \n**AFKT** : `{total_afk_time}`\n**Reason** : `{reason}`"
-            + f"\n\nHe Will Reply To You Soon!"
+            f"**My Boss Is Currently Not Available!**  \n**Last Seen :** `{total_afk_time}` \n\n**Reason** : {reason}"                     
             if reason
-            else f"**My Master is Afk**\n AFK : `{total_afk_time}` He Will Comeback Soon"
+            else f"**My Boss Is Currently Not Available!**  \n**Last Seen :** `{total_afk_time}`"
         )
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)
