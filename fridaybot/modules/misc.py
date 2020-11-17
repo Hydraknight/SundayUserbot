@@ -1,9 +1,3 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.b (the "License");
-# you may not use this file except in compliance with the License.
-#
-# You can find misc modules, which dont fit in anything xD
 
 """ Userbot module for other small commands. """
 
@@ -15,18 +9,18 @@ from fridaybot.events import register
  
 @register(outgoing=True, pattern="^.sleep( [0-9]+)?$")
 async def sleepybot(time):
-    """ For .sleep command, let the fridaybot snooze for a few second. """
+    """ For .sleep command, let the userbot snooze for a few second. """
     message = time.text
     if not message[0].isalpha() and message[0] not in ("/", "#", "@", "!"):
         if " " not in time.pattern_match.group(1):
             await time.reply("Syntax: `.sleep [seconds]`")
         else:
             counter = int(time.pattern_match.group(1))
-            await time.edit("`I am sulking and snoozing....`")
+            await time.edit("`Ok Boss, I'm Going To Sleep...😴`")
             sleep(2)
             if LOGGER:
                 await time.client.send_message(
                     LOGGER_GROUP,
-                    "You put the bot to sleep for " + str(counter) + " seconds",
+                    "You Put The Bot To Sleep For " + str(counter) + " seconds",
                 )
             sleep(counter)
