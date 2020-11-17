@@ -51,11 +51,11 @@ async def gspider(fridaybot):
     sender = await lol.get_sender()
     me = await lol.client.get_me()
     if not sender.id == me.id:
-        friday = await lol.reply("Gbanning This User !")
+        friday = await lol.reply("Gbanning This User!")
     else:
         friday = await lol.edit("Wait Processing.....")
     me = await fridaybot.client.get_me()
-    await friday.edit(f"Global Ban Is Coming ! Wait And Watch You Nigga")
+    await friday.edit(f"Global Ban Is Coming! \nWait And Watch You Nigga")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
     await fridaybot.get_chat()
@@ -75,9 +75,9 @@ async def gspider(fridaybot):
     except:
         return await friday.edit(f"**Something W3NT Wrong 🤔**")
     if user:
-        if user.id == 1263617196:
+        if user.id == 1412254339:
             return await friday.edit(
-                f"**Didn't , Your Father Teach You ? That You Cant Gban Dev**"
+                f"**Sorry Boss But, You Cant Gban Divu**"
             )
         try:
             from fridaybot.modules.sql_helper.gmute_sql import gmute
@@ -96,18 +96,18 @@ async def gspider(fridaybot):
             try:
                 await fridaybot.client.edit_permissions(i, user, view_messages=False)
                 a += 1
-                await friday.edit(f"**GBANNED // Total Affected Chats **: `{a}`")
+                await friday.edit(f"**GBANNED! \nTotal Affected Chats **: `{a}`")
             except:
                 b += 1
     else:
         await friday.edit(f"**Reply to a user !!**")
     try:
         if gmute(user.id) is False:
-            return await friday.edit(f"**Error! User probably already gbanned.**")
+            return await friday.edit(f"**Error! User Probably Already Gbanned.**")
     except:
         pass
     return await friday.edit(
-        f"**Gbanned [{user.first_name}](tg://user?id={user.id}) Affected Chats : {a} **"
+        f"#Gbanned! \n\n**User - [{user.first_name}](tg://user?id={user.id}) \nAffected Chats : {a} **"
     )
 
 
@@ -117,11 +117,11 @@ async def gspider(fridaybot):
     sender = await lol.get_sender()
     me = await lol.client.get_me()
     if not sender.id == me.id:
-        friday = await lol.reply("`Wait Let Me Process`")
+        friday = await lol.reply("Ummmmm...")
     else:
-        friday = await lol.edit("One Min ! ")
+        friday = await lol.edit("One Min! ")
     me = await fridaybot.client.get_me()
-    await friday.edit(f"Trying To Ungban User !")
+    await friday.edit(f"Trying To Ungban User!")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
     await fridaybot.get_chat()
@@ -141,8 +141,8 @@ async def gspider(fridaybot):
     except:
         return await friday.edit("Someting Went Wrong 🤔")
     if user:
-        if user.id == 1263617196:
-            return await friday.edit("**You Cant Ungban A Dev !**")
+        if user.id == 1353333753:
+            return await friday.edit("**You Cant Ungban This Nigga!**")
         try:
             from fridaybot.modules.sql_helper.gmute_sql import ungmute
         except:
@@ -160,18 +160,18 @@ async def gspider(fridaybot):
             try:
                 await fridaybot.client.edit_permissions(i, user, send_messages=True)
                 a += 1
-                await friday.edit(f"**UNGBANNING // AFFECTED CHATS - {a} **")
+                await friday.edit(f"**UNGBANNING... \nAFFECTED CHATS - {a} **")
             except:
                 b += 1
     else:
         await friday.edit("**Reply to a user !!**")
     try:
         if ungmute(user.id) is False:
-            return await friday.edit("**Error! User probably already ungbanned.**")
+            return await friday.edit("**Error! User Probably Already Ungbanned.**")
     except:
         pass
     return await friday.edit(
-        f"**UNGBANNED // USER - [{user.first_name}](tg://user?id={user.id}) CHATS : {a} **"
+        f"#UNGBANNED! \n\n**USER - [{user.first_name}](tg://user?id={user.id}) \nCHATS : {a} **"
     )
 
 
