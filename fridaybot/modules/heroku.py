@@ -17,98 +17,6 @@ Heroku = heroku3.from_key(Var.HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
 
 
-@friday.on(
-    friday_on_cmd(pattern="(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)", outgoing=True)
-)
-@friday.on(
-    sudo_cmd(pattern="(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)", allow_sudo=True)
-)
-async def variable(var):
-    """
-    Manage most of ConfigVars setting, set new var, get current var,
-    or delete var...
-    """
-    if Var.HEROKU_APP_NAME is not None:
-        app = Heroku.app(Var.HEROKU_APP_NAME)
-    else:
-        return await edit_or_reply(
-            var, "`[HEROKU]:" "\nPlease setup your` **HEROKU_APP_NAME**"
-        )
-    exe = var.pattern_match.group(1)
-    heroku_var = app.config()
-    if exe == "get":
-        await edit_or_reply(var, "`Getting information...`")
-        await asyncio.sleep(1.5)
-        try:
-            variable = var.pattern_match.group(2).split()[0]
-            if variable in heroku_var:
-                return await edit_or_reply(
-                    var,
-                    "**ConfigVars**:" f"\n\n`{variable} = {heroku_var[variable]}`\n",
-                )
-            else:
-                return await edit_or_reply(
-                    var, "**ConfigVars**:" f"\n\n`Error:\n-> {variable} don't exists`"
-                )
-        except IndexError:
-            configs = prettyjson(heroku_var.to_dict(), indent=2)
-            with open("configs.json", "w") as fp:
-                fp.write(configs)
-            with open("configs.json", "r") as fp:
-                result = fp.read()
-                if len(result) >= 4096:
-                    await var.client.send_file(
-                        var.chat_id,
-                        "configs.json",
-                        reply_to=var.id,
-                        caption="`Output too large, sending it as a file`",
-                    )
-                else:
-                    await edit_or_reply(
-                        var,
-                        "`[HEROKU]` ConfigVars:\n\n"
-                        "================================"
-                        f"\n```{result}```\n"
-                        "================================",
-                    )
-            os.remove("configs.json")
-            return
-    elif exe == "set":
-        await edit_or_reply(var, "`Setting information...`")
-        variable = var.pattern_match.group(2)
-        if not variable:
-            return await edit_or_reply(var, ">`.set var <ConfigVars-name> <value>`")
-        value = var.pattern_match.group(3)
-        if not value:
-            variable = variable.split()[0]
-            try:
-                value = var.pattern_match.group(2).split()[1]
-            except IndexError:
-                return await edit_or_reply(var, ">`.set var <ConfigVars-name> <value>`")
-        await asyncio.sleep(1.5)
-        if variable in heroku_var:
-            await edit_or_reply(
-                var, f"**{variable}**  `successfully changed to`  ->  **{value}**"
-            )
-        else:
-            await edit_or_reply(
-                var, f"**{variable}**  `successfully added with value`  ->  **{value}**"
-            )
-        heroku_var[variable] = value
-    elif exe == "del":
-        await edit_or_reply(var, "`Getting information to deleting variable...`")
-        try:
-            variable = var.pattern_match.group(2).split()[0]
-        except IndexError:
-            return await edit_or_reply(
-                var, "`Please specify ConfigVars you want to delete`"
-            )
-        await asyncio.sleep(1.5)
-        if variable in heroku_var:
-            await edit_or_reply(var, f"**{variable}**  `successfully deleted`")
-            del heroku_var[variable]
-        else:
-            return await edit_or_reply(var, f"**{variable}**  `is not exists`")
 
 
 @friday.on(friday_on_cmd(pattern="usage$", outgoing=True))
@@ -173,28 +81,6 @@ async def dyno_usage(dyno):
         f"✗ **Percentage :-** [`{percentage}`**%**]",
     )
 
-
-@command(pattern="^.info heroku")
-async def info(event):
-    await borg.send_message(
-        event.chat_id,
-        "**Info for Module to Manage Heroku:**\n\n`.usage`\nUsage:__Check your heroku dyno hours status.__\n\n`.set var <NEW VAR> <VALUE>`\nUsage: __add new variable or update existing value variable__\n**!!! WARNING !!!, after setting a variable the bot will restart.**\n\n`.get var or .get var <VAR>`\nUsage: __get your existing varibles, use it only on your private group!__\n**This returns all of your private information, please be cautious...**\n\n`.del var <VAR>`\nUsage: __delete existing variable__\n**!!! WARNING !!!, after deleting variable the bot will restarted**",
-    )
-    await event.delete()
-
-
-def prettyjson(obj, indent=2, maxlinelength=80):
-    """Renders JSON content with indentation and line splits/concatenations to fit maxlinelength.
-    Only dicts, lists and basic types are supported"""
-
-    items, _ = getsubitems(
-        obj,
-        itemkey="",
-        islast=True,
-        maxlinelength=maxlinelength - indent,
-        indent=indent,
-    )
-    return indentitems(items, indent, level=0)
 
 
 @friday.on(friday_on_cmd(pattern="logs$", outgoing=True))
