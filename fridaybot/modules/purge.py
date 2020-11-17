@@ -1,8 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
+
 """ Userbot module for purging unneeded messages(usually spam or ot). """
 
 from asyncio import sleep
@@ -126,39 +122,3 @@ async def selfdestruct(destroy):
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID, "sd query done successfully")
 
-
-CMD_HELP.update(
-    {
-        "purge": ".purge\
-        \nUsage: Purges all messages starting from the reply."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "purgeme": ".purgeme <x>\
-        \nUsage: Deletes x amount of your latest messages."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "del": ".del\
-\nUsage: Deletes the message you replied to."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "edit": ".edit <newmessage>\
-\nUsage: Replace your last message with <newmessage>."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "sd": ".sd <x> <message>\
-\nUsage: Creates a message that selfdestructs in x seconds.\
-\nKeep the seconds under 100 since it puts your bot to sleep."
-    }
-)
