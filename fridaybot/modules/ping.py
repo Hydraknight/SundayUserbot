@@ -36,7 +36,7 @@ def get_readable_time(seconds: int) -> str:
 @friday.on(friday_on_cmd(pattern="ping$"))
 @friday.on(sudo_cmd(pattern="ping$", allow_sudo=True))
 async def _(event):
-    starkislub = await edit_or_reply(event, "`Pong !`")
+    starkislub = await edit_or_reply(event, "`PONG!`")
     if event.fwd_from:
         return
     start = datetime.now()
@@ -44,5 +44,5 @@ async def _(event):
     ms = (end - start).microseconds / 1000
     uptime = get_readable_time((time.time() - Lastupdate))
     await starkislub.edit(
-        f"**█▀█ █▀█ █▄░█ █▀▀ █ \n█▀▀ █▄█ █░▀█ █▄█ ▄**\n ➲ `{ms}` \n ➲ `{uptime}`"
+        f"**PONG!**\n ➲ `{ms}` \n ➲ `{uptime}`"
     )
