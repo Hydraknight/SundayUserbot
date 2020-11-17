@@ -1,4 +1,4 @@
-""".admin Plugin for @UniBorg"""
+""".admin Plugin for Userbot"""
 from telethon.tl.types import ChannelParticipantsAdmins
 from uniborg.util import friday_on_cmd
 
@@ -7,7 +7,7 @@ from uniborg.util import friday_on_cmd
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "@admin : **Spam Spotted**"
+    mentions = "@admins : **Nibba Spotted!**"
     chat = await event.get_input_chat()
     async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
         mentions += f"[\u2063](tg://user?id={x.id})"
