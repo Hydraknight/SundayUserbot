@@ -29,8 +29,7 @@ async def _(event):
     global afk_start
     global afk_end
     global reason
-    USER_AFK = {}
-    AFK_STICKER = ['CAACAgUAAxkBAAEG17xfs6PXneEr-TsBaa01tiP--d3PygACiQEAAvAi8zUuJyuHjHvB2B4E']
+    USER_AFK = {} 
     afk_time = None
     last_afk_message = {}
     afk_end = {}
@@ -50,7 +49,7 @@ async def _(event):
                 f"**My Boss Is Going To Offline!** \n__Due To__ : {reason}",
             )
         else:
-            await borg.send_sticker(event.chat_id, AFK_STICKER)
+            await borg.send_message(event.chat_id, f"**My Boss Is Going To Offline!**")
         await asyncio.sleep(5)
         await event.delete()
         try:
