@@ -22,7 +22,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
         builder = event.builder
         result = None
         query = event.text
-        if event.query.user_id == bot.uid and query.startswith("Divu"):
+        if event.query.user_id == bot.uid and query.startswith("My"):
             rev_text = query[::-1]
             buttons = paginate_help(0, CMD_LIST, "helpme")
             result = builder.article(
