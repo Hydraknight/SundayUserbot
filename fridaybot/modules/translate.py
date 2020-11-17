@@ -35,10 +35,10 @@ async def _(event):
         after_tr_text = translated.text
         # TODO: emojify the :
         # either here, or before translation
-        output_str = """**Translated By GujjuUserbot** 
-         Source **( {} )**
-         Translation **( {} )**
-         {}""".format(
+        output_str = """**Translated By [HinataBot](@MissHinata_Bot)** 
+         **Source** - __( {} )__
+         **Translation** - __( {} )__
+         `{}`""".format(
             translated.src, lan, after_tr_text
         )
         await edit_or_reply(event, output_str)
