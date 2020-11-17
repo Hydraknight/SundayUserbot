@@ -1,11 +1,3 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# lots of luv to MrConfused To Add Sudo in it and fix
-"""Cmd= `.zombie`
-Usage: Searches for deleted accounts in a groups and channels.
-Use .zombies clean to remove deleted accounts from the groups and channels.
-\nPorted by ©[NIKITA](t.me/kirito6969) and ©[EYEPATCH](t.me/NeoMatrix90)"""
 
 import asyncio
 from asyncio import sleep
@@ -50,22 +42,22 @@ UNBAN_RIGHTS = ChatBannedRights(
 
 @friday.on(friday_on_cmd(pattern=f"zombies ?(.*)"))
 async def rm_deletedacc(show):
-    """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
+    """ For .zombies command, list all the zombies in a chat. """
 
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "`No deleted accounts found, Group is clean`"
+    del_status = "`No Deleted Accounts Found, Group Is Clean`"
 
     if con != "clean":
-        await show.edit("`Searching for ghost/deleted/zombie accounts...`")
+        await show.edit("`Searching For Zombies...`")
         async for user in show.client.iter_participants(show.chat_id):
 
             if user.deleted:
                 del_u += 1
                 await sleep(1)
         if del_u > 0:
-            del_status = f"`Found` **{del_u}** ghost/deleted/zombie account(s) in this group,\
-            \nclean them by using `.zombies clean`"
+            del_status = f"Found **{del_u}** Zombies In This Group.\
+            \nClean Them By Using `.zombies clean`"
         await show.edit(del_status)
         return
 
@@ -76,10 +68,10 @@ async def rm_deletedacc(show):
 
     # Well
     if not admin and not creator:
-        await show.edit("`I am not an admin here!`")
+        await show.edit("`I Am Not An Admin Here!`")
         return
 
-    await show.edit("`Deleting deleted accounts...\nOh I can do that?!?!`")
+    await show.edit("`Killing Zombies...`")
     del_u = 0
     del_a = 0
 
@@ -90,7 +82,7 @@ async def rm_deletedacc(show):
                     EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS)
                 )
             except ChatAdminRequiredError:
-                await show.edit("`I don't have ban rights in this group`")
+                await show.edit("`I Don't Have Ban Rights In This Group`")
                 return
             except UserAdminInvalidError:
                 del_u -= 1
@@ -99,11 +91,11 @@ async def rm_deletedacc(show):
             del_u += 1
 
     if del_u > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s)"
+        del_status = f"**Killed** `{del_u}` **Zombies**"
 
     if del_a > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s) \
-        \n**{del_a}** deleted admin accounts are not removed"
+        del_status = f"**Killed** `{del_u}` **Zombies** \
+        \n`{del_a}` Zombie Admin Accounts Are Not Removed!"
 
     await show.edit(del_status)
     await sleep(2)
@@ -113,83 +105,9 @@ async def rm_deletedacc(show):
         await show.client.send_message(
             BOTLOG_CHATID,
             "#CLEANUP\n"
-            f"Cleaned **{del_u}** deleted account(s) !!\
+            f"Cleaned **{del_u}** Zombies!!\
             \nCHAT: {show.chat.title}(`{show.chat_id}`)",
         )
 
 
-@friday.on(sudo_cmd(pattern="zombies ?(.*)", allow_sudo=True))
-async def rm_deletedacc(show):
-    if show.fwd_from:
-        return
-    con = show.pattern_match.group(1)
-    """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
 
-    del_u = 0
-    del_status = "`No deleted accounts found, Group is clean`"
-
-    if con != "clean":
-        avengers = await show.reply("`Searching for ghost/deleted/zombie accounts...`")
-        await asyncio.sleep(2)
-        await avengers.delete()
-        async for user in show.client.iter_participants(show.chat_id):
-
-            if user.deleted:
-                del_u += 1
-                await sleep(1)
-        if del_u > 0:
-            del_status = f"`Found` **{del_u}** ghost/deleted/zombie account(s) in this group,\
-            \nclean them by using `.zombies clean`"
-        await show.reply(del_status)
-        return
-
-    # Here laying the sanity check
-    chat = await show.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-
-    # Well
-    if not admin and not creator:
-        await show.reply("`I am not an admin here!`")
-        return
-
-    avengers2 = await show.reply("`Deleting deleted accounts...\nOh I can do that?!?!`")
-    await asyncio.sleep(2)
-    await avengers2.delete()
-    del_u = 0
-    del_a = 0
-
-    async for user in show.client.iter_participants(show.chat_id):
-        if user.deleted:
-            try:
-                await show.client(
-                    EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS)
-                )
-            except ChatAdminRequiredError:
-                await show.reply("`I don't have ban rights in this group`")
-                return
-            except UserAdminInvalidError:
-                del_u -= 1
-                del_a += 1
-            await show.client(EditBannedRequest(show.chat_id, user.id, UNBAN_RIGHTS))
-            del_u += 1
-
-    if del_u > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s)"
-
-    if del_a > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s) \
-        \n**{del_a}** deleted admin accounts are not removed"
-
-    avengers3 = await show.reply(del_status)
-    await sleep(2)
-    await avengers3.delete()
-
-
-CMD_HELP.update(
-    {
-        "zombies": ".zombies\
-\nUsage: Searches for deleted accounts in a group. Use .delusers clean to remove deleted accounts from the group.\
-"
-    }
-)
