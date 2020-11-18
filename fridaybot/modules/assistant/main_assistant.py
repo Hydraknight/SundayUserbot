@@ -32,7 +32,7 @@ async def start(event):
     vent = event.chat_id
     starttext = f"Hello, **{firstname}!** Nice To Meet You, Well I Am **{bot_id}**, An Powerfull Assistant Bot. \n\n➤ My Boss **[L](tg://user?id=1403967684)** \nYou Can Talk/Contact My Boss Using This Bot."
 
-        if event.sender_id == bot.uid:
+    if event.sender_id == bot.uid:
         await tgbot.send_message(
             vent,
             message=f"Hello Boss, It's Me **{bot_id}**, Your Assistant! \nWhat You Wanna Do Today?",
@@ -42,10 +42,10 @@ async def start(event):
                 [
                     Button.url(
                         "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true")],],)
-        else:
-             if already_added(event.sender_id):
-                pass
-             elif not already_added(event.sender_id):
+    else:
+         if already_added(event.sender_id):
+            pass
+         elif not already_added(event.sender_id):
              add_usersid_in_db(event.sender_id)
              await tgbot.send_message(
              event.chat_id,
