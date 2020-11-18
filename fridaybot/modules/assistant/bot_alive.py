@@ -1,5 +1,3 @@
-
-
 from fridaybot import ALIVE_NAME
 from fridaybot.modules import currentversion
 

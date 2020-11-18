@@ -20,16 +20,13 @@ if ENV:
         TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "imDivu")
 
         # Send .get_id in any group with all your administration bots (added)
-        G_BAN_LOGGER_GROUP = int(os.environ.get(
-            "G_BAN_LOGGER_GROUP", -1001198699233))
+        G_BAN_LOGGER_GROUP = int(os.environ.get("G_BAN_LOGGER_GROUP", -1001198699233))
         # TG API limit. An album can have atmost 10 media!
-        GOOGLE_SEARCH_COUNT_LIMIT = int(
-            os.environ.get("GOOGLE_SEARCH_COUNT_LIMIT", 9))
+        GOOGLE_SEARCH_COUNT_LIMIT = int(os.environ.get("GOOGLE_SEARCH_COUNT_LIMIT", 9))
         TG_GLOBAL_ALBUM_LIMIT = int(os.environ.get("TG_GLOBAL_ALBUM_LIMIT", 9))
         # Telegram BOT Token from @BotFather
         TG_BOT_TOKEN_BF_HER = os.environ.get("TG_BOT_TOKEN_BF_HER", None)
-        TG_BOT_USER_NAME_BF_HER = os.environ.get(
-            "TG_BOT_USER_NAME_BF_HER", None)
+        TG_BOT_USER_NAME_BF_HER = os.environ.get("TG_BOT_USER_NAME_BF_HER", None)
         PRIVATE_GROUP_BOT_API_ID = int(
             os.environ.get("PRIVATE_GROUP_BOT_API_ID", False)
         )
@@ -78,19 +75,16 @@ if ENV:
         # specify list of users allowed to use bot
         # WARNING: be careful who you grant access to your bot.
         # malicious users could do ".exec rm -rf /*"
-        SUDO_USERS = set(int(x)
-                         for x in os.environ.get("SUDO_USERS", "").split())
+        SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
         WHITELIST_USERS = set(
             int(x) for x in os.environ.get("WHITELIST_USERS", "").split()
         )
         BLACKLIST_USERS = set(
             int(x) for x in os.environ.get("BLACKLIST_USERS", "").split()
         )
-        DEVLOPERS = set(int(x)
-                        for x in os.environ.get("DEVLOPERS", "").split())
+        DEVLOPERS = set(int(x) for x in os.environ.get("DEVLOPERS", "").split())
         OWNER_ID = set(int(x) for x in os.environ.get("OWNER_ID", "").split())
-        SUPPORT_USERS = set(int(x)
-                            for x in os.environ.get("SUPPORT_USERS", "").split())
+        SUPPORT_USERS = set(int(x) for x in os.environ.get("SUPPORT_USERS", "").split())
         # Very Stream
         VERY_STREAM_LOGIN = os.environ.get("VERY_STREAM_LOGIN", None)
         VERY_STREAM_KEY = os.environ.get("VERY_STREAM_KEY", None)

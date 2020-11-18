@@ -39,8 +39,7 @@ async def _(event):
     reason = event.pattern_match.group(1)
     if not USER_AFK:  # pylint:disable=E0602
         last_seen_status = await borg(  # pylint:disable=E0602
-            functions.account.GetPrivacyRequest(
-                types.InputPrivacyKeyStatusTimestamp())
+            functions.account.GetPrivacyRequest(types.InputPrivacyKeyStatusTimestamp())
         )
         if isinstance(last_seen_status.rules, types.PrivacyValueAllowAll):
             afk_time = datetime.datetime.now()  # pylint:disable=E0602
@@ -78,14 +77,13 @@ async def set_not_afk(event):
     if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
         shite = await borg.send_message(
             event.chat_id,
-            "My Boss Is Back Online!\n You Are AFK For : `"
-            + total_afk_time
-            + "`",
+            "My Boss Is Back Online!\n You Are AFK For : `" + total_afk_time + "`",
         )
         try:
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
-                "#Online \nBoss Is Back Online! \n\n You Are AFK For : `", + total_afk_time + "`"
+                "#Online \nBoss Is Back Online! \n\n You Are AFK For : `",
+                +total_afk_time + "`",
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             await borg.send_message(  # pylint:disable=E0602

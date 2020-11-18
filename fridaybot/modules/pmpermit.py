@@ -24,8 +24,7 @@ DEFAULTUSER = (
     str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
 )
 CUSTOM_MIDDLE_PMP = (
-    str(
-        CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Protection By [Watari](@WatariRobot)"
+    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Protection By [Watari](@WatariRobot)"
 )
 USER_BOT_WARN_ZERO = "You Have Attempted To Spam Masters Inbox So Inorder To Avoid Over Spam , You Have Been Blocked By Userbot"
 
@@ -213,4 +212,6 @@ async def hehehe(event):
     if event.is_private:
         if not pmpermit_sql.is_approved(chat.id):
             pmpermit_sql.approve(chat.id, "**My Boss Is Best🔥**")
-            await borg.send_message(chat, "**User Detected As Developer. \nSo Approved!**")
+            await borg.send_message(
+                chat, "**User Detected As Developer. \nSo Approved!**"
+            )

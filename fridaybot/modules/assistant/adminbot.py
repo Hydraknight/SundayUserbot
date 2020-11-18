@@ -1,5 +1,3 @@
-
-
 from telethon.errors import BadRequestError
 from telethon.tl.functions.channels import EditAdminRequest, EditBannedRequest
 from telethon.tl.functions.messages import UpdatePinnedMessageRequest
