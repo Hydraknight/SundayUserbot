@@ -23,7 +23,6 @@ from fridaybot.modules.sql_helper.idadder_sql import (
 
 
 @assistant_cmd("start", is_args=False)
-@only_pvt
 async def start(event):
     starkbot = await tgbot.get_me()
     bot_id = starkbot.first_name
@@ -58,12 +57,8 @@ async def start(event):
                 [custom.Button.inline("Commands For Assistant", data="gibcmd")],
                 [
                     Button.url(
-                        "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true"
-                      )
-                  ],
-              ],
-          )
-         else:
+                        "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true")],],)
+        else:
              if already_added(event.sender_id):
                 pass
              elif not already_added(event.sender_id):
@@ -74,9 +69,7 @@ async def start(event):
              link_preview=False,
              buttons=[
                  [Button.url("Our Bots", "t.me/MissHinata_Bot")],
-                 [Button.url("Join Our Group", "t.me/ElitesOfAnime")],
-                 ],
-             )
+                 [Button.url("Join Our Group", "t.me/ElitesOfAnime")],],)
 
 
 
