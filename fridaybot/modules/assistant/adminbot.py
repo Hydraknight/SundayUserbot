@@ -1,15 +1,4 @@
-#    Copyright (C) Midhun KM 2020
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 
 
 from telethon.errors import BadRequestError
@@ -79,7 +68,7 @@ async def ban(event):
     momos = user
     momoz = momos.first_name
     if kekme.is_admin:
-        await event.reply("Oh, Yeah? Lets Start Banning Admins.")
+        await event.reply("Oh, Yeah? Full Banning-Bazzi")
         return
     if user:
         pass
@@ -112,7 +101,7 @@ async def nothanos(event):
         return
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
-        await event.reply("`Unbanned Successfully. Granting another chance.🚶`")
+        await event.reply("Unbanned Successfully. Granting Another Chance.🚶")
     except BadRequestError:
         await event.reply("I Could't UnBan That User Probably Due To Less Permissions.")
         return
@@ -137,7 +126,7 @@ async def promote(event):
     user, rank = await get_user_from_event(event)
     kekme = await serena.get_permissions(event.chat_id, user)
     if kekme.is_admin:
-        await event.reply("Oh, Yeah? Promote A Admin?")
+        await event.reply("Oh, Yeah? Full Promote-Bazzi")
         return
     if not rank:
         rank = "Admin"
@@ -147,7 +136,7 @@ async def promote(event):
         return
     try:
         await event.client(EditAdminRequest(event.chat_id, user.id, new_rights, rank))
-        await event.reply("Promoted Successfully! Now give Party")
+        await event.reply("Promoted Successfully! ")
     except BadRequestError:
         await event.reply(
             "I Could't Promote That User Probably Due To Less Permissions."
@@ -197,7 +186,7 @@ async def pin(event):
     await event.get_chat()
     to_pin = event.reply_to_msg_id
     if not to_pin:
-        await event.reply("`Reply to a message to pin it.`")
+        await event.reply("Reply To A Message To Pin It.")
         return
     options = event.pattern_match.group(1)
     is_silent = True
@@ -227,7 +216,7 @@ async def kick(event):
     momos = user
     momos.first_name
     if kekme.is_admin:
-        await event.reply("Oh, Yeah? Lets Start kicking Admins.")
+        await event.reply("Oh, Yeah? Full Kicking-Bazzi.")
         retur
     if not user:
         await event.reply("Mention A User")
@@ -239,10 +228,10 @@ async def kick(event):
         return
     if reason:
         await event.reply(
-            f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`\nReason: {reason}"
+            f"Kicked [{user.first_name}](tg://user?id={user.id})!\nReason: {reason}"
         )
     else:
-        await event.reply(f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`")
+        await event.reply(f"Kicked [{user.first_name}](tg://user?id={user.id})!")
 
 
 @assistant_cmd("mute", is_args=True)
@@ -258,7 +247,7 @@ async def mute(event):
     momos = user
     momos.first_name
     if kekme.is_admin:
-        await event.reply("Oh, Mutting? Lets Start Banning Admins.")
+        await event.reply("Oh, Mutting? Lets Start Banning-Bazzi")
         retur
     if not user:
         await event.reply("Mention A User")
@@ -270,10 +259,10 @@ async def mute(event):
         return
     if reason:
         await event.reply(
-            f"`Muted` [{user.first_name}](tg://user?id={user.id})`!`\nReason: {reason}"
+            f"Muted [{user.first_name}](tg://user?id={user.id})!\nReason: {reason}"
         )
     else:
-        await event.reply(f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`")
+        await event.reply(f"Muted [{user.first_name}](tg://user?id={user.id})!")
 
 
 @assistant_cmd("unmute", is_args=True)
@@ -297,10 +286,10 @@ async def mute(event):
         return
     if reason:
         await event.reply(
-            f"`UnMuted` [{user.first_name}](tg://user?id={user.id})`!`\nReason: {reason}"
+            f"UnMuted [{user.first_name}](tg://user?id={user.id})!\nReason: {reason}"
         )
     else:
-        await event.reply(f"`Unmute` [{user.first_name}](tg://user?id={user.id})`!`")
+        await event.reply(f"Unmute [{user.first_name}](tg://user?id={user.id})!")
 
 
 async def get_user_from_event(event):
@@ -320,7 +309,7 @@ async def get_user_from_event(event):
             user = int(user)
 
         if not user:
-            await event.reply("`Pass the user's username, id or reply!`")
+            await event.reply("Pass The User's Username, Id Or Reply!")
             return
 
         if event.message.entities is not None:
