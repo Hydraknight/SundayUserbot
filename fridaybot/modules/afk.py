@@ -19,9 +19,7 @@ last_afk_message = {}
 afk_start = {}
 
 
-@friday.on(
-    events.NewMessage(pattern=r"\.afk ?(.*)", outgoing=True)
-)  # pylint:disable=E0602
+@friday.on(events.NewMessage(pattern=r"\.afk ?(.*)", outgoing=True))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -40,8 +38,8 @@ async def _(event):
     reason = event.pattern_match.group(1)
     if not USER_AFK:  # pylint:disable=E0602
         last_seen_status = await borg(  # pylint:disable=E0602
-            functions.account.GetPrivacyRequest(types.InputPrivacyKeyStatusTimestamp())
-        )
+            functions.account.GetPrivacyRequest(
+                types.InputPrivacyKeyStatusTimestamp()))
         if isinstance(last_seen_status.rules, types.PrivacyValueAllowAll):
             afk_time = datetime.datetime.now()  # pylint:disable=E0602
         USER_AFK = f"yes: {reason}"  # pylint:disable=E0602
@@ -51,7 +49,8 @@ async def _(event):
                 f"**My Boss Is Going Offline!**\n**Due To** : {reason}",
             )
         else:
-            await borg.send_message(event.chat_id, f"**My Boss Is Going Offline!**")
+            await borg.send_message(event.chat_id,
+                                    f"**My Boss Is Going Offline!**")
         await asyncio.sleep(5)
         await event.delete()
         try:
@@ -78,7 +77,8 @@ async def set_not_afk(event):
     if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
         shite = await borg.send_message(
             event.chat_id,
-            "My Boss Is Back Online!\n You Are AFK For : `" + total_afk_time + "`",
+            "My Boss Is Back Online!\n You Are AFK For : `" + total_afk_time +
+            "`",
         )
         try:
             await borg.send_message(  # pylint:disable=E0602
@@ -89,9 +89,9 @@ async def set_not_afk(event):
         except Exception as e:  # pylint:disable=C0103,W0703
             await borg.send_message(  # pylint:disable=E0602
                 event.chat_id,
-                "Please set `PRIVATE_GROUP_ID` "
-                + "for the proper functioning of afk functionality "
-                + "@imDivu\n\n `{}`".format(str(e)),
+                "Please set `PRIVATE_GROUP_ID` " +
+                "for the proper functioning of afk functionality " +
+                "@imDivu\n\n `{}`".format(str(e)),
                 reply_to=event.message.id,
                 silent=True,
             )
@@ -103,9 +103,8 @@ async def set_not_afk(event):
 
 @friday.on(
     events.NewMessage(  # pylint:disable=E0602
-        incoming=True, func=lambda e: bool(e.mentioned or e.is_private)
-    )
-)
+        incoming=True,
+        func=lambda e: bool(e.mentioned or e.is_private)))
 async def on_afk(event):
     if event.fwd_from:
         return
@@ -141,8 +140,7 @@ async def on_afk(event):
             elif days > 1:
                 if days > 6:
                     date = now + datetime.timedelta(
-                        days=-days, hours=-hours, minutes=-minutes
-                    )
+                        days=-days, hours=-hours, minutes=-minutes)
                     afk_since = date.strftime("%A, %Y %B %m, %H:%I")
                 else:
                     wday = now + datetime.timedelta(days=-days)
@@ -156,9 +154,8 @@ async def on_afk(event):
         msg = None
         message_to_reply = (
             f"**My Boss Is Currently Offline!**  \n**Last Seen :**  `{total_afk_time}`\n"
-            + f"**Reason** : `{reason}` "
-            if reason
-            else f"**My Boss Is Currently Offline!** \n**Last Seen :** `{total_afk_time}` "
+            + f"**Reason** : `{reason}` " if reason else
+            f"**My Boss Is Currently Offline!** \n**Last Seen :** `{total_afk_time}` "
         )
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)
