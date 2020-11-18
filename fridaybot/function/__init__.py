@@ -1,3 +1,3 @@
-# Copyright (C) Is Distributed Between @StarkGang And @ZeltraxRockz
+# Copyright (C) Is Distributed Between @imDivu And @FridayOT
 # Please Ask At @FridayOT Before Copying Any Module
-# FridayUserbot (2020-21)
+# USERBUTT (2020-21)
