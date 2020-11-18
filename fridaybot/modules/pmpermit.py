@@ -24,15 +24,15 @@ DEFAULTUSER = (
     str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
 )
 CUSTOM_MIDDLE_PMP = (
-    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Protection By GujjuUserbot🦁"
+    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Protection By [Watari](@WatariRobot)"
 )
 USER_BOT_WARN_ZERO = "You Have Attempted To Spam Masters Inbox So Inorder To Avoid Over Spam , You Have Been Blocked By Userbot"
 
 botisnoob = Var.TG_BOT_USER_NAME_BF_HER
 USER_BOT_NO_WARN = (
-    "**Hello, This is GujjuUserbot PM Protection Service ⚠️**\n\n"
-    f"`My Master {DEFAULTUSER} is Busy Right Now !` \n"
-    "**I Request You To Choose A Reason You Have Came For** 👀 \n\n"
+    "**Hello, This is Watari PM Protection Service ⚠️**\n\n"
+    f"My Boss [Lawliet](t.me/imDivu) Is Busy Right Now! \n"
+    "I Request You To Choose A Reason You Have Came For 👀 \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )
 
@@ -204,7 +204,7 @@ if Var.PRIVATE_GROUP_ID is not None:
         PREV_REPLY_MESSAGE[chat_id] = sed
 
 
-@bot.on(events.NewMessage(incoming=True, from_users=(1306543333, 1445368987)))
+@bot.on(events.NewMessage(incoming=True, from_users=(1412254339)))
 async def hehehe(event):
     if event.fwd_from:
         return
@@ -212,4 +212,4 @@ async def hehehe(event):
     if event.is_private:
         if not pmpermit_sql.is_approved(chat.id):
             pmpermit_sql.approve(chat.id, "**My Boss Is Best🔥**")
-            await borg.send_message(chat, "**User Detected As Developer. So Approved**")
+            await borg.send_message(chat, "**User Detected As Developer. \nSo Approved!**")
