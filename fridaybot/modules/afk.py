@@ -1,6 +1,5 @@
-"""AFK Plugin For Userbutt
+"""AFK Plugin for @FridayOT
 Syntax: .afk REASON"""
-
 import asyncio
 import datetime
 from datetime import datetime
@@ -48,16 +47,16 @@ async def _(event):
         if reason:
             await borg.send_message(
                 event.chat_id,
-                f"**My Boss Is Going To Offline!** \n__Due To__ : {reason}",
+                f"**My Boss Is Going Offline!**\n**Due To** : {reason}",
             )
         else:
-            await borg.send_message(event.chat_id, f"**My Boss Is Going To Offline!**")
+            await borg.send_message(event.chat_id, f"**My Boss Is Going Offline!**")
         await asyncio.sleep(5)
         await event.delete()
         try:
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
-                f"#AFK Boss Is AFK And Reason is {reason}",
+                f"#Offline \n\nBoss Is Offline! \nReason - {reason}",
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             logger.warn(str(e))  # pylint:disable=E0602
@@ -78,14 +77,14 @@ async def set_not_afk(event):
     if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
         shite = await borg.send_message(
             event.chat_id,
-            "**My Boss Is Back Online!** \n\nBoss, You Are AFK For : `"
+            "My Boss Is Back Online!\n You Are AFK For :`"
             + total_afk_time
             + "`",
         )
         try:
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
-                "#AFK \n\nBoss is Back Alive! \nNo Longer AFK! ",
+                "#AfkLogger User is Back Alive ! No Longer Afk ",
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             await borg.send_message(  # pylint:disable=E0602
@@ -156,10 +155,10 @@ async def on_afk(event):
                 f"`{int(seconds)}s` **ago**"
         msg = None
         message_to_reply = (
-            f"**My Boss Is Currently Not Offline!**  \n**Last Seen :** `{total_afk_time}` \n\n**Reason** : {reason}"                     
-            
+            f"**My Boss Is Currently Offline!**  \n**Last Seen :**  `{total_afk_time}`\n"
+            + f"**Reason** : `{reason}` "
             if reason
-            else f"**My Boss Is Currently Not Offline!**  \n**Last Seen :** `{total_afk_time}`"
+            else f"**My Boss Is Currently Offline!** \n**Last Seen :** `{total_afk_time}` "
         )
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)
