@@ -1,7 +1,5 @@
 """ Plugin By @chsaiujwal on telegram """
 """ Plugin By @chsaiujwal on telegram """
-
-
 from asyncio import wait
 
 from telethon import events
