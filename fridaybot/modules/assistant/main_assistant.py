@@ -63,7 +63,7 @@ async def start(event):
                   ],
               ],
           )
-         else:
+          else:
              if already_added(event.sender_id):
                 pass
              elif not already_added(event.sender_id):
