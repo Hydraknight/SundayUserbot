@@ -21,6 +21,20 @@ from fridaybot.modules.sql_helper.idadder_sql import (
 
 
 @assistant_cmd("start", is_args=False)
+@only_groups
+async def start(event):
+    starkbot = await tgbot.get_me()
+    bot_id = starkbot.first_name
+    bot_username = starkbot.username
+    replied_user = await event.client(GetFullUserRequest(event.sender_id))
+    firstname = replied_user.user.first_name
+    vent = event.chat_id
+
+    await tgbot.send_message(vent, "Watari Is Online!")
+            
+
+
+@assistant_cmd("start", is_args=False)
 @only_pvt
 async def start(event):
     starkbot = await tgbot.get_me()
