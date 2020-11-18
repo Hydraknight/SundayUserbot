@@ -46,13 +46,11 @@ async def _(event):
             afk_time = datetime.datetime.now()  # pylint:disable=E0602
         USER_AFK = f"yes: {reason}"  # pylint:disable=E0602
         if reason:
-            await borg.send_message(-1001247283436, f"/divuoffline {reason}")
             await borg.send_message(
                 event.chat_id,
                 f"**My Boss Is Going To Offline!** \n__Due To__ : {reason}",
             )
         else:
-            await borg.send_message(-1001247283436, f"/divuoffline")
             await borg.send_message(event.chat_id, f"**My Boss Is Going To Offline!**")
         await asyncio.sleep(5)
         await event.delete()
