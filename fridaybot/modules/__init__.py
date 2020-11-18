@@ -30,9 +30,11 @@ if isdbfine:
 else:
     dbstats = "Not Fine ❌"
 
-inlinestats = (f"✘ SHOWING USERBUTT STATS ✘\n"
-               f"VERSION = {currentversion} \n"
-               f"DATABASE = {dbstats} \n"
-               f"SUDO = {amiusingsudo} \n"
-               f"LOG-CHAT = {logchat} \n"
-               f"HEROKU = {riplife} ")
+inlinestats = (
+    f"✘ SHOWING USERBUTT STATS ✘\n"
+    f"VERSION = {currentversion} \n"
+    f"DATABASE = {dbstats} \n"
+    f"SUDO = {amiusingsudo} \n"
+    f"LOG-CHAT = {logchat} \n"
+    f"HEROKU = {riplife} "
+)

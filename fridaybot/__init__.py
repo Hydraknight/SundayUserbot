@@ -3,22 +3,19 @@ import os
 import sys
 import time
 from distutils.util import strtobool as sb
-from logging import basicConfig
-from logging import DEBUG
-from logging import getLogger
-from logging import INFO
+from logging import DEBUG, INFO, basicConfig, getLogger
 
 import pylast
 from dotenv import load_dotenv
-from pylast import LastFMNetwork
-from pylast import md5
+from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from requests import get
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
-from .function import fridayfunction as topfunc
 from var import Var
+
+from .function import fridayfunction as topfunc
 
 Lastupdate = time.time()
 
@@ -42,8 +39,7 @@ ENV = os.environ.get("ENV", False)
 
 # Bot Logs setup:
 if bool(ENV):
-    CONSOLE_LOGGER_VERBOSE = sb(
-        os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
+    CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
     if CONSOLE_LOGGER_VERBOSE:
         basicConfig(
@@ -52,14 +48,15 @@ if bool(ENV):
         )
     else:
         basicConfig(
-            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-            level=INFO)
+            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=INFO
+        )
     LOGS = getLogger(__name__)
 
     # Check if the config was edited by using the already used variable.
     # Basically, its the 'virginity check' for the config file ;)
     CONFIG_CHECK = os.environ.get(
-        "___________PLOX_______REMOVE_____THIS_____LINE__________", None)
+        "___________PLOX_______REMOVE_____THIS_____LINE__________", None
+    )
 
     if CONFIG_CHECK:
         LOGS.info(
@@ -81,8 +78,7 @@ if bool(ENV):
     PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
 
     # Console verbose logging
-    CONSOLE_LOGGER_VERBOSE = sb(
-        os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
+    CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
     # SQL Database URI
     DB_URI = os.environ.get("DATABASE_URL", None)
