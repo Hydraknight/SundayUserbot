@@ -43,9 +43,9 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Unknown"
 PM_IMG = Config.ALIVE_IMAGE
 pm_caption = "◉ **Userbutt Is:** __ONLINE__\n\n"
 pm_caption += "◉ **My Boss:** [Lawliet]((tg://user?id=1403967684))\n"
-pm_caption += "◉ **Assistant Butt:** [Watari](@WatariRobot)\n
-pm_caption += "
-pm_caption += "\n           [Hinata](https://t.me/misshinata_bot) | [Support](https://t.me/misslillysupport) | [Lilly](https://t.me/misslilly_bot)"                                                              
+pm_caption += "◉ **Assistant Butt:** [Watari](@WatariRobot)\n"
+pm_caption += "\n"
+pm_caption += "           [Hinata](https://t.me/misshinata_bot) | [Support](https://t.me/misslillysupport) | [Lilly](https://t.me/misslilly_bot)"                                                              
 
 
 @friday.on(friday_on_cmd(pattern=r"alive"))
