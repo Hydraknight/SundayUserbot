@@ -28,11 +28,11 @@ async def start(event):
     replied_user = await event.client(GetFullUserRequest(event.sender_id))
     firstname = replied_user.user.first_name
     vent = event.chat_id
-    starttext = f"Hello, {firstname} ! Nice To Meet You, Well I Am {bot_id}, An Powerfull Assistant Bot. \n\n➤ My Boss [L](tg://user?id=1445368987) \nYou Can Talk/Contact My Boss Using This Bot."
+    starttext = f"Hello, **{firstname}!** Nice To Meet You, Well I Am **{bot_id}**, An Powerfull Assistant Bot. \n\n➤ My Boss **[L](tg://user?id=1403967684)** \nYou Can Talk/Contact My Boss Using This Bot."
     if event.sender_id == bot.uid:
         await tgbot.send_message(
             vent,
-            message=f"Hi Master, It's Me *{bot_id}*, Your Assistant! \nWhat You Wanna Do today ?",
+            message=f"Hello Boss, It's Me *"{bot_id}**, Your Assistant! \nWhat You Wanna Do Today?",
             buttons=[
                 [custom.Button.inline("Show Users 🔥", data="users")],
                 [custom.Button.inline("Commands For Assistant", data="gibcmd")],
@@ -54,7 +54,7 @@ async def start(event):
             link_preview=False,
             buttons=[
                 [custom.Button.inline("Deploy your Friday 🇮🇳", data="deploy")],
-                [Button.url("Help Me ❓", "t.me/Fridayot")],
+                [Button.url("Join Our Group", "t.me/ElitesOfAnime")],
             ],
         )
 
@@ -85,7 +85,29 @@ async def users(event):
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"gibcmd")))
 async def users(event):
     await event.delete()
-    grabon = "Hello Here Are Some Commands \n➤ /start - Check if I am Alive \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤ /broadcast - Sends Message To all Users In Bot \n➤ /id - Shows ID of User And Media. \n➤ /addnote - Add Note \n➤ /notes - Shows Notes \n➤ /rmnote - Remove Note \n➤ /alive - Am I Alive? \n➤ /bun - Works In Group , Bans A User. \n➤ /unbun - Unbans A User in Group \n➤ /prumote - Promotes A User \n➤ /demute - Demotes A User \n➤ /pin - Pins A Message \n➤ /stats - Shows Total Users In Bot"
+    grabon = "Hello Here Are Some Commands :
+
+• **I am Alive?**
+   ∘ /ping - Ping!
+   ∘ /alive - I'm Alive?
+• **Translation**
+   ∘ /tr <lang-code> 
+• **Notes**
+   ∘ /addnote - Add Note 
+   ∘ /notes - Shows Notes 
+   ∘ /rmnote - Remove Note 
+• **Admin Cmd**
+   ∘ /bun - Works In Group, Bans A User. 
+   ∘ /unbun - Unbans A User in Group 
+   ∘ /prumote - Promotes A User 
+   ∘ /demute - Demotes A User 
+   ∘ /pin - Pins A Message 
+• **ID**
+   ∘ /id - Shows ID of User And Media. 
+
+**Bot Owner Only:**
+• /stats - Shows Total Users In Bot
+• /broadcast - Sends Message To all Users In Bot"
     await tgbot.send_message(event.chat_id, grabon)
 
 
@@ -156,7 +178,29 @@ async def starkisnoob(event):
 @assistant_cmd("help", is_args=False)
 @peru_only
 async def starkislub(event):
-    grabonx = "Hello Here Are Some Commands \n➤ /start - Check if I am Alive \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤ /broadcast - Sends Message To all Users In Bot \n➤ /id - Shows ID of User And Media. \n➤ /addnote - Add Note \n➤ /notes - Shows Notes \n➤ /rmnote - Remove Note \n➤ /alive - Am I Alive? \n➤ /bun - Works In Group , Bans A User. \n➤ /unbun - Unbans A User in Group \n➤ /prumote - Promotes A User \n➤ /demute - Demotes A User \n➤ /pin - Pins A Message \n➤ /stats - Shows Total Users In Bot"
+    grabonx = "Hello Here Are Some Commands :
+
+• **I am Alive?**
+   ∘ /ping - Ping!
+   ∘ /alive - I'm Alive?
+• **Translation**
+   ∘ /tr <lang-code> 
+• **Notes**
+   ∘ /addnote - Add Note 
+   ∘ /notes - Shows Notes 
+   ∘ /rmnote - Remove Note 
+• **Admin Cmd**
+   ∘ /bun - Works In Group, Bans A User. 
+   ∘ /unbun - Unbans A User in Group 
+   ∘ /prumote - Promotes A User 
+   ∘ /demute - Demotes A User 
+   ∘ /pin - Pins A Message 
+• **ID**
+   ∘ /id - Shows ID of User And Media. 
+
+**Bot Owner Only:**
+• /stats - Shows Total Users In Bot
+• /broadcast - Sends Message To all Users In Bot"
     await event.reply(grabonx)
 
 
