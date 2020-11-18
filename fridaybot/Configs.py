@@ -8,30 +8,18 @@ if ENV:
 
     class Config(object):
         LOGGER = True
-        # Get this value from my.telegram.org! Please do not steal
-        LOCATION = os.environ.get("LOCATION", None)
-        OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
-        # Get your own ACCESS_KEY from http://api.screenshotlayer.com/api/capture
-        SCREEN_SHOT_LAYER_ACCESS_KEY = os.environ.get(
-            "SCREEN_SHOT_LAYER_ACCESS_KEY", None
-        )
+        
+        
         # Send .get_id in any group to fill this value.
 
         # This is required for the modules involving the file system.
         TMP_DOWNLOAD_DIRECTORY = os.environ.get(
             "TMP_DOWNLOAD_DIRECTORY", "./DOWNLOADS/"
         )
-        # This is required for the speech to text module. Get your USERNAME from https://console.bluemix.net/docs/services/speech-to-text/getting-started.html
-        IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
-        IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
-        # This is required for the hash to torrent file functionality to work.
-        HASH_TO_TORRENT_API = os.environ.get(
-            "HASH_TO_TORRENT_API", "https://example.com/torrent/{}"
-        )
+        
         # This is required for the @telegraph functionality.
-        TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "Friday")
-        # Get a Free API Key from OCR.Space
-        OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
+        TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "imDivu")
+        
         # Send .get_id in any group with all your administration bots (added)
         G_BAN_LOGGER_GROUP = int(os.environ.get("G_BAN_LOGGER_GROUP", -1001198699233))
         # TG API limit. An album can have atmost 10 media!
@@ -60,13 +48,8 @@ if ENV:
         # chat ids or usernames, it is recommended to use chat ids,
         # providing usernames means an additional overhead for the user
         CHATS_TO_MONITOR_FOR_ANTI_FLOOD = []
-        # Get your own API key from https://www.remove.bg/ or
-        # feel free to use http://telegram.dog/Remove_BGBot
-        REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
+        
         # Set to True if you want to block users that are spamming your PMs.
-        SLAP_USERNAME = os.environ.get("SLAP_USERNAME", None)
-        GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN", None)
-        GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME", None)
         NO_P_M_SPAM = bool(os.environ.get("NO_P_M_SPAM", False))
         # define "spam" in PMs
         NO_SONGS = bool(os.environ.get("NO_SONGS", False))
@@ -111,32 +94,9 @@ if ENV:
         )
         TEMP_DIR = os.environ.get("TEMP_DIR", None)
         CHANNEL_ID = int(os.environ.get("CHANNEL_ID", -100))
-        # Google Chrome Stuff
-        CHROME_DRIVER = os.environ.get(
-            "CHROME_DRIVER", "/app/.chromedriver/bin/chromedriver"
-        )
-        GOOGLE_CHROME_BIN = os.environ.get(
-            "GOOGLE_CHROME_BIN", "/app/.apt/usr/bin/google-chrome"
-        )
-        # Google Drive ()
-        G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
-        G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
-        GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
-        AUTH_TOKEN_DATA = os.environ.get("AUTH_TOKEN_DATA", None)
-        if AUTH_TOKEN_DATA != None:
-            os.makedirs(TMP_DOWNLOAD_DIRECTORY)
-            t_file = open(TMP_DOWNLOAD_DIRECTORY + "auth_token.txt", "w")
-            t_file.write(AUTH_TOKEN_DATA)
-            t_file.close()
-        YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
-        GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
-        # MongoDB
-        MONGO_URI = os.environ.get("MONGO_URI", None)
-        # Lydia API
-        LYDIA_API = os.environ.get("LYDIA_API", None)
+        
         PRIVATE_GROUP_ID = int(os.environ.get("PRIVATE_GROUP_ID", False))
         PLUGIN_CHANNEL = int(os.environ.get("PLUGIN_CHANNEL", False))
-        NEWS_CHANNEL_ID = int(os.environ.get("NEWS_CHANNEL_ID", False))
         PM_DATA = os.environ.get("PM_DATA", "ENABLE")
         TAG_FEATURE = os.environ.get("TAG_FEATURE", "DISABLE")
         ASSISTANT_LOG = int(os.environ.get("ASSISTANT_LOG", False))
