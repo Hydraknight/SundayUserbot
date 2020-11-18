@@ -86,19 +86,7 @@ if bool(ENV):
     # SQL Database URI
     DB_URI = os.environ.get("DATABASE_URL", None)
 
-    # OCR API key
-    OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
-
-    # remove.bg API key
-    REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
-
-    # Chrome For Carbon
-    CHROME_DRIVER = os.environ.get(
-        "CHROME_DRIVER", "/app/.chromedriver/bin/chromedriver"
-    )
-    GOOGLE_CHROME_BIN = os.environ.get(
-        "GOOGLE_CHROME_BIN", "/app/.apt/usr/bin/google-chrome"
-    )
+    
 
     # Heroku Credentials for updater.
     HEROKU_MEMEZ = sb(os.environ.get("HEROKU_MEMEZ", "False"))
@@ -111,9 +99,7 @@ if bool(ENV):
     AUTONAME = os.environ.get("AUTONAME", None)
     CUSTOM_PMPERMIT = os.environ.get("CUSTOM_PMPERMIT", None)
 
-    # OpenWeatherMap API Key
-    OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
-
+    
     # Anti Spambot Config
     ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
     # Log It
@@ -121,19 +107,13 @@ if bool(ENV):
 
     ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
 
-    # Youtube API key
-    YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
-
+    
     # Default .alive name
     ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
 
     LESS_SPAMMY = os.environ.get("LESS_SPAMMY", True)
 
-    # Time & Date - Country and Time Zone
-    COUNTRY = str(os.environ.get("COUNTRY", ""))
-
-    TZ_NUMBER = int(os.environ.get("TZ_NUMBER", 1))
-
+    
     # Clean Welcome
     CLEAN_WELCOME = sb(os.environ.get("CLEAN_WELCOME", "True"))
 
@@ -141,50 +121,6 @@ if bool(ENV):
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     ANTISPAM_SYSTEM = os.environ.get("ANTISPAM_SYSTEM", "DISABLE")
     WHITE_CHAT = PRIVATE_GROUP_ID = int(os.environ.get("WHITE_CHAT", False))
-
-    # Last.fm Module
-    BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
-    DEFAULT_BIO = os.environ.get("DEFAULT_BIO", None)
-
-    LASTFM_API = os.environ.get("LASTFM_API", None)
-    LASTFM_SECRET = os.environ.get("LASTFM_SECRET", None)
-    LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME", None)
-    LASTFM_PASSWORD_PLAIN = os.environ.get("LASTFM_PASSWORD", None)
-    LASTFM_PASS = pylast.md5(LASTFM_PASSWORD_PLAIN)
-    if not LASTFM_USERNAME == "None":
-        lastfm = pylast.LastFMNetwork(
-            api_key=LASTFM_API,
-            api_secret=LASTFM_SECRET,
-            username=LASTFM_USERNAME,
-            password_hash=LASTFM_PASS,
-        )
-    else:
-        lastfm = None
-
-    # Google Drive Module
-    G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
-    G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
-    G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA", None)
-    GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
-    TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./downloads")
-else:
-    # Put your ppe vars here if you are using local hosting
-    PLACEHOLDER = None
-
-# Setting Up CloudMail.ru and MEGA.nz extractor binaries,
-# and giving them correct perms to work properly.
-if not os.path.exists("bin"):
-    os.mkdir("bin")
-
-binaries = {
-    "https://raw.githubusercontent.com/yshalsager/megadown/master/megadown": "bin/megadown",
-    "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py": "bin/cmrudl",
-}
-
-for binary, path in binaries.items():
-    downloader = SmartDL(binary, path, progress_bar=False)
-    downloader.start()
-    os.chmod(path, 0o755)
 
 # Global Variables
 COUNT_MSG = 0
