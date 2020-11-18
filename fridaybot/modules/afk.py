@@ -1,3 +1,5 @@
+"""AFK Plugin For Userbutt
+Syntax: .afk REASON"""
 
 import asyncio
 import datetime
@@ -29,7 +31,7 @@ async def _(event):
     global afk_start
     global afk_end
     global reason
-    USER_AFK = {} 
+    USER_AFK = {}
     afk_time = None
     last_afk_message = {}
     afk_end = {}
@@ -43,27 +45,22 @@ async def _(event):
         if isinstance(last_seen_status.rules, types.PrivacyValueAllowAll):
             afk_time = datetime.datetime.now()  # pylint:disable=E0602
         USER_AFK = f"yes: {reason}"  # pylint:disable=E0602
-        
         if reason:
-            await borg.send_message(-1001247283436, f"/divuoffline {reason}")
             await borg.send_message(
                 event.chat_id,
-                f"**My Boss Is Going To Offline!** \n__Due To__ : {reason}",
+                f"**My Master Seems To Be Too Busy 👀.** \n__He Going Afk Because Of__ `{reason}`",
             )
         else:
-            await borg.send_message(-1001247283436, f"/divuoffline")
-            await borg.send_message(event.chat_id, f"**My Boss Is Going To Offline!**")
+            await borg.send_message(event.chat_id, f"**I Am Busy And I Am Going Afk**.")
         await asyncio.sleep(5)
         await event.delete()
         try:
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
-                f"#AfkLogger Afk Is Active And Reason is {reason}",
+                f"#AFK Boss Is AFK And Reason is {reason}",
             )
         except Exception as e:  # pylint:disable=C0103,W0703
-            logger.warn(str(e))  # pylint:disable=E0602 
-
-
+            logger.warn(str(e))  # pylint:disable=E0602
 
 
 @friday.on(events.NewMessage(outgoing=True))  # pylint:disable=E0602
@@ -81,12 +78,11 @@ async def set_not_afk(event):
     if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
         shite = await borg.send_message(
             event.chat_id,
-            "__Pro is Back Alive__\n**No Longer AFK!**\n `I Was afk for:``"
+            "__Pro is Back Alive__\n**No Longer afk.**\n `I Was afk for:``"
             + total_afk_time
             + "`",
         )
         try:
-            await borg.send_message(-1001247283436, f"/divuonline")
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
                 "#AfkLogger User is Back Alive ! No Longer Afk ",
@@ -96,7 +92,7 @@ async def set_not_afk(event):
                 event.chat_id,
                 "Please set `PRIVATE_GROUP_ID` "
                 + "for the proper functioning of afk functionality "
-                + "@imDivu\n\n `{}`".format(str(e)),
+                + "Please Seek Support in @FridayOT\n\n `{}`".format(str(e)),
                 reply_to=event.message.id,
                 silent=True,
             )
@@ -123,7 +119,7 @@ async def on_afk(event):
     afk_end = back_alivee.replace(microsecond=0)
     if afk_start != {}:
         total_afk_time = str((afk_end - afk_start))
-    afk_since = "**Recently**"
+    afk_since = "**a while ago**"
     current_message_text = event.message.message.lower()
     if "afk" in current_message_text:
         # fridaybot's should not reply to other fridaybot's
@@ -160,9 +156,10 @@ async def on_afk(event):
                 f"`{int(seconds)}s` **ago**"
         msg = None
         message_to_reply = (
-            f"**My Boss Is Currently Not Available!**  \n**Last Seen :** `{total_afk_time}` \n\n**Reason** : {reason}"                     
+            f"**My Boss is Afk**  \n**AFKT** : `{total_afk_time}`\n**Reason** : `{reason}`"
+            + f"\n\nHe Will Reply To You Soon!"
             if reason
-            else f"**My Boss Is Currently Not Available!**  \n**Last Seen :** `{total_afk_time}`"
+            else f"**My Master is Afk**\n AFK : `{total_afk_time}` He Will Comeback Soon"
         )
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)
