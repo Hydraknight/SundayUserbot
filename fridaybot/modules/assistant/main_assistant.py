@@ -59,24 +59,24 @@ async def start(event):
                 [
                     Button.url(
                         "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true"
-                     )
+                      )
+                  ],
+              ],
+          )
+         else:
+             if already_added(event.sender_id):
+                pass
+             elif not already_added(event.sender_id):
+             add_usersid_in_db(event.sender_id)
+             await tgbot.send_message(
+             event.chat_id,
+             message=starttext,
+             link_preview=False,
+             buttons=[
+                 [Button.url("Our Bots", "t.me/MissHinata_Bot")],
+                 [Button.url("Join Our Group", "t.me/ElitesOfAnime")],
                  ],
-             ],
-         )
-        else:
-            if already_added(event.sender_id):
-               pass
-            elif not already_added(event.sender_id):
-            add_usersid_in_db(event.sender_id)
-            await tgbot.send_message(
-            event.chat_id,
-            message=starttext,
-            link_preview=False,
-            buttons=[
-                [Button.url("Our Bots", "t.me/MissHinata_Bot")],
-                [Button.url("Join Our Group", "t.me/ElitesOfAnime")],
-                ],
-           )
+             )
 
 
 
