@@ -36,7 +36,7 @@ async def spammer(e):
                 await reply_to_id.reply(spam_message)
             else:
                 await e.client.send_message(e.chat_id, spam_message)
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.5)
         
     elif reply_to_id.media:
         to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
@@ -65,7 +65,7 @@ async def spammer(e):
                     )
                 except:
                     pass
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(1)
             
     elif reply_to_id.text and e.reply_to_msg_id:
         spam_message = reply_to_id.text
@@ -75,7 +75,7 @@ async def spammer(e):
                 await reply_to_id.reply(spam_message)
             else:
                 await e.client.send_message(e.chat_id, spam_message)
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(1.5)
         
     else:
         await edit_or_reply(e, "try again something went wrong or check `.info spam`")
@@ -107,7 +107,7 @@ async def spammer(e):
                 await reply_to_id.reply(spam_message)
             else:
                 await e.client.send_message(e.chat_id, spam_message)
-            await asyncio.sleep(1)
+            await asyncio.sleep(1.5)
         
     elif reply_to_id.media:
         to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
@@ -132,7 +132,7 @@ async def spammer(e):
                     )
                 except:
                     pass
-                await asyncio.sleep(1.5)
+                await asyncio.sleep(2)
             
     elif reply_to_id.text and e.reply_to_msg_id:
         spam_message = reply_to_id.text
@@ -142,7 +142,7 @@ async def spammer(e):
                 await reply_to_id.reply(spam_message)
             else:
                 await e.client.send_message(e.chat_id, spam_message)
-            await asyncio.sleep(1)
+            await asyncio.sleep(1.5)
         
     else:
         await edit_or_reply(e, "try again something went wrong or check `.info spam`")
