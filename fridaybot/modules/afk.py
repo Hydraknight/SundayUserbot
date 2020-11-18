@@ -1,4 +1,4 @@
-"""AFK Plugin for @FridayOT
+"""AFK Plugin for @imDivu
 Syntax: .afk REASON"""
 import asyncio
 import datetime
@@ -77,14 +77,14 @@ async def set_not_afk(event):
     if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
         shite = await borg.send_message(
             event.chat_id,
-            "My Boss Is Back Online!\n You Are AFK For :`"
+            "My Boss Is Back Online!\n You Are AFK For : `"
             + total_afk_time
             + "`",
         )
         try:
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
-                "#AfkLogger User is Back Alive ! No Longer Afk ",
+                "#Online \nBoss Is Back Online! \n\n You Are AFK For : `", + total_afk_time + "`"
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             await borg.send_message(  # pylint:disable=E0602
