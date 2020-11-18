@@ -20,8 +20,6 @@ from fridaybot.modules.sql_helper.idadder_sql import (
 )
 
 
-
-
 @assistant_cmd("start", is_args=False)
 async def start(event):
     starkbot = await tgbot.get_me()
@@ -38,27 +36,26 @@ async def start(event):
             message=f"Hello Boss, It's Me **{bot_id}**, Your Assistant! \nWhat You Wanna Do Today?",
             buttons=[
                 [custom.Button.inline("Show Users 🔥", data="users")],
-                [custom.Button.inline("Commands For Assistant", data="gibcmd")],
+                [custom.Button.inline(
+                    "Commands For Assistant", data="gibcmd")],
                 [
                     Button.url(
-                        "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true")],],)
+                        "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true")], ],)
     else:
-         if already_added(event.sender_id):
+        if already_added(event.sender_id):
             pass
-         elif not already_added(event.sender_id):
-             add_usersid_in_db(event.sender_id)
-             await tgbot.send_message(
-             event.chat_id,
-             message=starttext,
-             link_preview=False,
-             buttons=[
-                 [Button.url("Our Bots 🤖", data="ourbots")],
-                 [Button.url("Join Our Group", "t.me/ElitesOfAnime")],],)
+        elif not already_added(event.sender_id):
+            add_usersid_in_db(event.sender_id)
+            await tgbot.send_message(
+                event.chat_id,
+                message=starttext,
+                link_preview=False,
+                buttons=[
+                    [Button.url("Our Bots 🤖", data="ourbots")],
+                    [Button.url("Join Our Group", "t.me/ElitesOfAnime")], ],)
 
 
-
-
-#ourbots
+# ourbots
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"ourbots")))
 async def help(event):
     await event.delete()
@@ -71,7 +68,6 @@ async def help(event):
                 [Button.url("Miss Lilly", "t.me/MissLilly_Bot")],
             ],
         )
-
 
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"users")))
@@ -98,7 +94,7 @@ async def users(event):
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"gibcmd")))
 async def users(event):
     await event.delete()
-    grabon = "Hello Here Are Some Commands : \n \n• **I am Alive?**\n   ∘ /ping - Ping!\n   ∘ /alive - I'm Alive?\n• **Translation**\n   ∘ /tr <lang-code> \n• **Notes**\n   ∘ /addnote - Add Note\n   ∘ /notes - Shows Notes\n   ∘ /rmnote - Remove Note \n• **Admin Cmd** \n   ∘ /bun - Works In Group, Bans A User.\n   ∘ /unbun - Unbans A User in Group \n   ∘ /prumote - Promotes A User \n   ∘ /demute - Demotes A User \n   ∘ /pin - Pins A Message \n• **ID** \n   ∘ /id - Shows ID of User And Media. \n**Bot Owner Only:**\n• /stats - Shows Total Users In Bot \n• /broadcast - Sends Message To all Users In Bot"                         
+    grabon = "Hello Here Are Some Commands : \n \n• **I am Alive?**\n   ∘ /ping - Ping!\n   ∘ /alive - I'm Alive?\n• **Translation**\n   ∘ /tr <lang-code> \n• **Notes**\n   ∘ /addnote - Add Note\n   ∘ /notes - Shows Notes\n   ∘ /rmnote - Remove Note \n• **Admin Cmd** \n   ∘ /bun - Works In Group, Bans A User.\n   ∘ /unbun - Unbans A User in Group \n   ∘ /prumote - Promotes A User \n   ∘ /demute - Demotes A User \n   ∘ /pin - Pins A Message \n• **ID** \n   ∘ /id - Shows ID of User And Media. \n**Bot Owner Only:**\n• /stats - Shows Total Users In Bot \n• /broadcast - Sends Message To all Users In Bot"
     await tgbot.send_message(event.chat_id, grabon)
 
 
@@ -148,7 +144,8 @@ async def sedlyfsir(event):
             await asyncio.sleep(0.2)
         except Exception as e:
             try:
-                logger.info(f"Error : {error_count}\nError : {e} \nUsers : {chat_id}")
+                logger.info(
+                    f"Error : {error_count}\nError : {e} \nUsers : {chat_id}")
             except:
                 pass
     await tgbot.send_message(
