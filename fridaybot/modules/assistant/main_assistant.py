@@ -20,18 +20,6 @@ from fridaybot.modules.sql_helper.idadder_sql import (
 )
 
 
-@assistant_cmd("start", is_args=False)
-@only_groups
-async def start(event):
-    starkbot = await tgbot.get_me()
-    bot_id = starkbot.first_name
-    bot_username = starkbot.username
-    replied_user = await event.client(GetFullUserRequest(event.sender_id))
-    firstname = replied_user.user.first_name
-    vent = event.chat_id
-
-    await tgbot.send_message(vent, "Watari Is Online!")
-            
 
 
 @assistant_cmd("start", is_args=False)
@@ -44,7 +32,24 @@ async def start(event):
     firstname = replied_user.user.first_name
     vent = event.chat_id
     starttext = f"Hello, **{firstname}!** Nice To Meet You, Well I Am **{bot_id}**, An Powerfull Assistant Bot. \n\n➤ My Boss **[L](tg://user?id=1403967684)** \nYou Can Talk/Contact My Boss Using This Bot."
-    if event.sender_id == bot.uid:
+
+    if event.is_group:
+       if event.sender_id == bot.uid:
+        await tgbot.send_message(
+            vent,
+            message=f"Watari Is Online!")
+       else:
+            if already_added(event.sender_id):
+               pass
+            elif not already_added(event.sender_id):
+            add_usersid_in_db(event.sender_id)
+            await tgbot.send_message(
+            event.chat_id, "Hmm?")
+
+
+
+    else:
+        if event.sender_id == bot.uid:
         await tgbot.send_message(
             vent,
             message=f"Hello Boss, It's Me **{bot_id}**, Your Assistant! \nWhat You Wanna Do Today?",
@@ -54,24 +59,24 @@ async def start(event):
                 [
                     Button.url(
                         "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true"
-                    )
-                ],
-            ],
-        )
-    else:
-        if already_added(event.sender_id):
-            pass
-        elif not already_added(event.sender_id):
+                     )
+                 ],
+             ],
+         )
+        else:
+            if already_added(event.sender_id):
+               pass
+            elif not already_added(event.sender_id):
             add_usersid_in_db(event.sender_id)
-        await tgbot.send_message(
+            await tgbot.send_message(
             event.chat_id,
             message=starttext,
             link_preview=False,
             buttons=[
-                [custom.Button.inline("Deploy your Friday 🇮🇳", data="deploy")],
+                [Button.url("Our Bots", "t.me/MissHinata_Bot")],
                 [Button.url("Join Our Group", "t.me/ElitesOfAnime")],
-            ],
-        )
+                ],
+           )
 
 
 
