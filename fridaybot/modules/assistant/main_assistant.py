@@ -32,22 +32,6 @@ async def start(event):
     vent = event.chat_id
     starttext = f"Hello, **{firstname}!** Nice To Meet You, Well I Am **{bot_id}**, An Powerfull Assistant Bot. \n\n➤ My Boss **[L](tg://user?id=1403967684)** \nYou Can Talk/Contact My Boss Using This Bot."
 
-    if event.is_group:
-       if event.sender_id == bot.uid:
-        await tgbot.send_message(
-            vent,
-            message=f"Watari Is Online!")
-       else:
-            if already_added(event.sender_id):
-               pass
-            elif not already_added(event.sender_id):
-            add_usersid_in_db(event.sender_id)
-            await tgbot.send_message(
-            event.chat_id, "Hmm?")
-
-
-
-    else:
         if event.sender_id == bot.uid:
         await tgbot.send_message(
             vent,
@@ -68,9 +52,25 @@ async def start(event):
              message=starttext,
              link_preview=False,
              buttons=[
-                 [Button.url("Our Bots", "t.me/MissHinata_Bot")],
+                 [Button.url("Our Bots 🤖", data="ourbots")],
                  [Button.url("Join Our Group", "t.me/ElitesOfAnime")],],)
 
+
+
+
+#ourbots
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"ourbots")))
+async def help(event):
+    await event.delete()
+    if event.query.user_id is not bot.uid:
+        await tgbot.send_message(
+            event.chat_id,
+            message="Here Is Some Bot List, That Can Manage Your Group Easily! \n\nList Of Bots:",
+            buttons=[
+                [Button.url("Miss Hinata", "t.me/MissHinat_Bot")],
+                [Button.url("Miss Lilly", "t.me/MissLilly_Bot")],
+            ],
+        )
 
 
 
