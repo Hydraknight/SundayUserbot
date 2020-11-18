@@ -10,8 +10,7 @@ from uniborg.util import friday_on_cmd
 async def hi(event):
     if event.fwd_from:
         return
-    await event.edit(
-        "╔┓┏╦━╦┓╔┓╔━━╗\n║┗┛║┗╣┃║┃║X X  ║\n║┏┓║┏╣┗╣┗╣╰╯║\n╚┛┗╩━╩━╩━╩━━╝")
+    await event.edit("╔┓┏╦━╦┓╔┓╔━━╗\n║┗┛║┗╣┃║┃║X X  ║\n║┏┓║┏╣┗╣┗╣╰╯║\n╚┛┗╩━╩━╩━╩━━╝")
 
 
 @friday.on(friday_on_cmd(pattern=r"plus"))
@@ -82,7 +81,8 @@ async def hi(event):
     if event.fwd_from:
         return
     await event.edit(
-        "┏┓┈╭━━╮╭━━╮╭━━╮\n┃┃┈┃┃┃┃┃╭╮┃┃╭╮┃\n┃┗┓┃┃┃┃┃┏┓┃┃╰╯┃\n┗━┛┗┻┻┛┗┛┗┛╰━━╯")
+        "┏┓┈╭━━╮╭━━╮╭━━╮\n┃┃┈┃┃┃┃┃╭╮┃┃╭╮┃\n┃┗┓┃┃┃┃┃┏┓┃┃╰╯┃\n┗━┛┗┻┻┛┗┛┗┛╰━━╯"
+    )
 
 
 @friday.on(events.NewMessage(pattern=r"\.spam", outgoing=True))
@@ -98,8 +98,8 @@ async def spammer(e):
         await e.delete()
         if LOGGER:
             await e.client.send_message(
-                LOGGER_GROUP, "#SPAM \n\n"
-                "Spam was executed successfully")
+                LOGGER_GROUP, "#SPAM \n\n" "Spam was executed successfully"
+            )
 
 
 @friday.on(friday_on_cmd(pattern=r"no"))
