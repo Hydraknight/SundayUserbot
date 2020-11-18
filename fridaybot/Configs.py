@@ -141,10 +141,10 @@ if ENV:
         TAG_FEATURE = os.environ.get("TAG_FEATURE", "DISABLE")
         ASSISTANT_LOG = int(os.environ.get("ASSISTANT_LOG", False))
         UPSTREAM_REPO = os.environ.get(
-            "UPSTREAM_REPO", "https://github.com/Starkgang/FridayUserbot"
+            "UPSTREAM_REPO", "https://github.com/imDivu/MissHinata"
         )
         ALIVE_IMAGE = os.environ.get(
-            "ALIVE_IMAGE", "https://telegra.ph/file/22535f8051a58af113586.jpg"
+            "ALIVE_IMAGE", "https://telegra.ph/file/749e3c556c21723bcb8fd.jpg"
         )
         TESSDATA_PREFIX = os.environ.get(
             "TESSDATA_PREFIX", "./.apt/usr/share/tesseract-ocr/4.00/tessdata"
