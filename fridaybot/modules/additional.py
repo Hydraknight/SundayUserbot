@@ -2,9 +2,10 @@
 """ Plugin By @chsaiujwal on telegram """
 
 
-from uniborg.util import friday_on_cmd
 from asyncio import wait
+
 from telethon import events
+from uniborg.util import friday_on_cmd
 
 
 @friday.on(friday_on_cmd(pattern=r"hola"))
