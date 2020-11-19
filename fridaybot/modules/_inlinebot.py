@@ -1,14 +1,12 @@
 import os
 import re
+import urllib
 from math import ceil
 
 import requests
 from telethon import Button, custom, events, functions
-import urllib
-
-import requests
-from telethon import Button, events
 from youtubesearchpython import SearchVideos
+
 from fridaybot import ALIVE_NAME, CMD_LIST
 from fridaybot.modules import inlinestats
 
@@ -219,7 +217,6 @@ def paginate_help(page_number, loaded_modules, prefix):
             )
         ]
     return pairs
-
 
 
 import urllib
