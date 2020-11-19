@@ -8,6 +8,7 @@ from fridaybot.utils import friday_on_cmd, sudo_cmd
 @friday.on(sudo_cmd(pattern=r"nsfw", allow_sudo=True))
 async def nsfw(event):
     url = "https://nsfw-categorize.it/api/upload"
+    await event.edit("`Processing..`")
     replymsg = await event.get_reply_message()
     photo = None
     if replymsg and replymsg.media:
