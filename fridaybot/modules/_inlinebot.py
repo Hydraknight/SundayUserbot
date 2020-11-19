@@ -183,7 +183,6 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             buttons=[Button.url("Contact Him", f"tg://user?id={him_id}")],
         )
 
-
     def paginate_help(page_number, loaded_modules, prefix):
         number_of_rows = 8
         number_of_cols = 2
