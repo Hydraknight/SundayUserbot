@@ -216,7 +216,7 @@ def paginate_help(page_number, loaded_modules, prefix):
         return pairs
 
 @tgbot.on(events.InlineQuery(pattern=r"torrent (.*)"))
-    async def inline_id_handler(event: events.InlineQuery.Event):
+async def inline_id_handler(event: events.InlineQuery.Event):
         builder = event.builder
         testinput = event.pattern_match.group(1)
         starkisnub = urllib.parse.quote_plus(testinput)
