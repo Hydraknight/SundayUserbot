@@ -1,4 +1,3 @@
-
 #    Copyright (C) Midhun KM 2020
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -16,27 +15,9 @@ import os
 import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
-import textwrap
-from telethon import TelegramClient, events
-from telethon.tl.functions.users import GetFullUserRequest
-import math
-import os
-import requests
-from io import BytesIO
-from PIL import Image
-from PIL import Image, ImageDraw, ImageFont
-import textwrap
-from telethon import events
-from telethon.tl.types import (
-    ChannelParticipantsAdmins,
-    ChatAdminRights,
-    ChatBannedRights,
-    MessageEntityMentionName,
-    MessageMediaPhoto,
-)
-from PIL import Image, ImageDraw, ImageFont
+from telethon.tl.types import MessageMediaPhoto
+
 from fridaybot.utils import friday_on_cmd
-from var import Var
 
 
 @friday.on(friday_on_cmd(pattern="memify"))
@@ -44,42 +25,44 @@ async def starkmeme(event):
     hmm = event.pattern_match.group(1)
     response = await event.get_reply_message()
     if response and response.media:
-            if isinstance(response.media, MessageMediaPhoto):
-                seds = await borg.download_media(name, sedpath)
-            elif "image" in response.media.document.mime_type.split("/"):
-                seds = await borg.download_media(name, sedpath)
-            else:
-                await event.reply("This is Not Supported Yet.")
-                return
-            if ';' in hmm:
-                stark = hmm.split(";", 1)
-                first_txt = stark[0]
-                second_txt = stark[1]
-                top_text = first_txt
-                bottom_text = second_txt
-                generate_meme(seds, top_text=top_text, bottom_text=bottom_text)
-                imgpath = sedpath + "/" + "memeimg.png"
-                await borg.send_file(event.chat_id, imgpath)
-                if os.path.exists(imgpath):
-                    os.remove(imgpath)
-            else:
-                top_text = hmm
-                bottom_text = ""
-                generate_meme(seds, top_text=top_text, bottom_text=bottom_text)
-                imgpath = sedpath + "/" + "memeimg.png"
-                await borg.send_file(event.chat_id, imgpath)
-                if os.path.exists(imgpath):
-                    os.remove(imgpath)        
+        if isinstance(response.media, MessageMediaPhoto):
+            seds = await borg.download_media(name, sedpath)
+        elif "image" in response.media.document.mime_type.split("/"):
+            seds = await borg.download_media(name, sedpath)
+        else:
+            await event.reply("This is Not Supported Yet.")
+            return
+        if ";" in hmm:
+            stark = hmm.split(";", 1)
+            first_txt = stark[0]
+            second_txt = stark[1]
+            top_text = first_txt
+            bottom_text = second_txt
+            generate_meme(seds, top_text=top_text, bottom_text=bottom_text)
+            imgpath = sedpath + "/" + "memeimg.png"
+            await borg.send_file(event.chat_id, imgpath)
+            if os.path.exists(imgpath):
+                os.remove(imgpath)
+        else:
+            top_text = hmm
+            bottom_text = ""
+            generate_meme(seds, top_text=top_text, bottom_text=bottom_text)
+            imgpath = sedpath + "/" + "memeimg.png"
+            await borg.send_file(event.chat_id, imgpath)
+            if os.path.exists(imgpath):
+                os.remove(imgpath)
 
 
-def generate_meme(image_path, top_text, bottom_text='', font_path='fonts/impact.ttf', font_size=11):
+def generate_meme(
+    image_path, top_text, bottom_text="", font_path="fonts/impact.ttf", font_size=11
+):
     im = Image.open(image_path)
     draw = ImageDraw.Draw(im)
     image_width, image_height = im.size
     font = ImageFont.truetype(font=font_path, size=int(image_height * font_size) // 100)
     top_text = top_text.upper()
     bottom_text = bottom_text.upper()
-    char_width, char_height = font.getsize('A')
+    char_width, char_height = font.getsize("A")
     chars_per_line = image_width // char_width
     top_lines = textwrap.wrap(top_text, width=chars_per_line)
     bottom_lines = textwrap.wrap(bottom_text, width=chars_per_line)
@@ -87,22 +70,22 @@ def generate_meme(image_path, top_text, bottom_text='', font_path='fonts/impact.
     for line in top_lines:
         line_width, line_height = font.getsize(line)
         x = (image_width - line_width) / 2
-        draw.text((x-2, y-2), line, font=font, fill='black')
-        draw.text((x+2, y-2), line, font=font, fill='black')
-        draw.text((x+2, y+2), line, font=font, fill='black')
-        draw.text((x-2, y+2), line, font=font, fill='black')
-        draw.text((x, y), line, fill='white', font=font)
+        draw.text((x - 2, y - 2), line, font=font, fill="black")
+        draw.text((x + 2, y - 2), line, font=font, fill="black")
+        draw.text((x + 2, y + 2), line, font=font, fill="black")
+        draw.text((x - 2, y + 2), line, font=font, fill="black")
+        draw.text((x, y), line, fill="white", font=font)
         y += line_height
 
     y = image_height - char_height * len(bottom_lines) - 14
     for line in bottom_lines:
         line_width, line_height = font.getsize(line)
         x = (image_width - line_width) / 2
-        draw.text((x-2, y-2), line, font=font, fill='black')
-        draw.text((x+2, y-2), line, font=font, fill='black')
-        draw.text((x+2, y+2), line, font=font, fill='black')
-        draw.text((x-2, y+2), line, font=font, fill='black')
-        draw.text((x, y), line, fill='white', font=font)
+        draw.text((x - 2, y - 2), line, font=font, fill="black")
+        draw.text((x + 2, y - 2), line, font=font, fill="black")
+        draw.text((x + 2, y + 2), line, font=font, fill="black")
+        draw.text((x - 2, y + 2), line, font=font, fill="black")
+        draw.text((x, y), line, fill="white", font=font)
         y += line_height
     file_name = "memeimg.png"
     ok = sedpath + "/" + file_name
