@@ -20,7 +20,6 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Friday"
 
 
 @tgbot.on(events.InlineQuery)
-@tgbot.on(events.InlineQuery(pattern=r"(.*)"))
 async def inline_handler(event):
     builder = event.builder
     result = None
@@ -34,6 +33,7 @@ async def inline_handler(event):
             buttons=buttons,
             link_preview=False,
         )
+        await event.answer([result])
     elif event.query.user_id == bot.uid and query == "stats":
         result = builder.article(
             title="Stats",
@@ -43,6 +43,7 @@ async def inline_handler(event):
                 [Button.url("Repo 🇮🇳", "https://github.com/StarkGang/FridayUserbot")],
                 [Button.url("Join Channel ❤️", "t.me/Fridayot")],
             ],
+        await event.answer([result])
         )
     elif event.query.user_id == bot.uid and query.startswith("**Hello"):
         result = builder.photo(
@@ -59,7 +60,7 @@ async def inline_handler(event):
                 [custom.Button.inline("Requesting", data="askme")],
             ],
         )
-    await event.answer([result])
+        await event.answer([result])
 
 
 @tgbot.on(
