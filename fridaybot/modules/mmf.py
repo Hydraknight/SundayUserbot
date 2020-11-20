@@ -57,7 +57,7 @@ async def starkmeme(event):
 
 
 def generate_meme(
-    image_path, top_text, bottom_text="", font_path="fonts/impact.ttf", font_size=11
+    image_path, top_text, bottom_text="", font_path="Fonts/impact.ttf", font_size=11
 ):
     im = Image.open(image_path)
     draw = ImageDraw.Draw(im)
