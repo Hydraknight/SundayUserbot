@@ -43,8 +43,8 @@ async def inline_handler(event):
                 [Button.url("Repo 🇮🇳", "https://github.com/StarkGang/FridayUserbot")],
                 [Button.url("Join Channel ❤️", "t.me/Fridayot")],
             ],
-        await event.answer([result])
         )
+        await event.answer([result])
     elif event.query.user_id == bot.uid and query.startswith("**Hello"):
         result = builder.photo(
             file=WARN_PIC,
