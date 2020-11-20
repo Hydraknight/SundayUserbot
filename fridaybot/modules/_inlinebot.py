@@ -60,6 +60,7 @@ async def inline_handler(event):
         )
     await event.answer([result])
 
+
 @tgbot.on(
     events.callbackquery.CallbackQuery(  # pylint:disable=E0602
         data=re.compile(b"helpme_next\((.+?)\)")
