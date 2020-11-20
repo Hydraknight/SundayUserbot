@@ -22,9 +22,10 @@ from fridaybot.utils import friday_on_cmd
 sedpath = Config.TMP_DOWNLOAD_DIRECTORY
 
 
-@friday.on(friday_on_cmd(pattern="memify"))
+@friday.on(friday_on_cmd(pattern="memify (.*)"))
 async def starkmeme(event):
     hmm = event.pattern_match.group(1)
+    sedlyfbro = await event.edit("`Creating Your Meme`")
     response = await event.get_reply_message()
     if response and response.media:
         if isinstance(response.media, MessageMediaPhoto):
@@ -53,7 +54,7 @@ async def starkmeme(event):
             await borg.send_file(event.chat_id, imgpath)
             if os.path.exists(imgpath):
                 os.remove(imgpath)
-
+        await sedlyfbro.delete()
 
 def generate_meme(
     image_path, top_text, bottom_text="", font_path="Fonts/impact.ttf", font_size=11
