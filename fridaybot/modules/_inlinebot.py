@@ -58,8 +58,7 @@ async def inline_handler(event):
                 [custom.Button.inline("Requesting", data="askme")],
             ],
         )
-    await event.answer([result] if result else None)
-
+    await event.answer([result])
 
 @tgbot.on(
     events.callbackquery.CallbackQuery(  # pylint:disable=E0602
