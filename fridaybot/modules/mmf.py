@@ -22,7 +22,7 @@ from fridaybot.utils import friday_on_cmd
 sedpath = Config.TMP_DOWNLOAD_DIRECTORY
 
 
-@friday.on(friday_on_cmd(pattern="memify"))
+@friday.on(friday_on_cmd(pattern="memify (.*)"))
 async def starkmeme(event):
     hmm = event.pattern_match.group(1)
     response = await event.get_reply_message()
