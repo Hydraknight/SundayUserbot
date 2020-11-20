@@ -19,11 +19,12 @@ LOG_CHAT = Config.PRIVATE_GROUP_ID
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Friday"
 
 
-@tgbot.on(events.InlineQuery)  # pylint:disable=E0602
+@tgbot.on(events.InlineQuery)
+@tgbot.on(events.InlineQuery(pattern=r"(.*)"))
 async def inline_handler(event):
     builder = event.builder
     result = None
-    query = event.text
+    query = event.pattern_match.group(1)
     if event.query.user_id == bot.uid and query.startswith("Friday"):
         rev_text = query[::-1]
         buttons = paginate_help(0, CMD_LIST, "helpme")
@@ -33,7 +34,7 @@ async def inline_handler(event):
             buttons=buttons,
             link_preview=False,
         )
-    if event.query.user_id == bot.uid and query == "stats":
+    elif event.query.user_id == bot.uid and query == "stats":
         result = builder.article(
             title="Stats",
             text=f"**Showing Stats For {DEFAULTUSER}'s Friday** \nNote --> Only Owner Can Check This \n(C) @FridayOT",
@@ -43,7 +44,7 @@ async def inline_handler(event):
                 [Button.url("Join Channel ❤️", "t.me/Fridayot")],
             ],
         )
-    if event.query.user_id == bot.uid and query.startswith("**Hello"):
+    elif event.query.user_id == bot.uid and query.startswith("**Hello"):
         result = builder.photo(
             file=WARN_PIC,
             text=query,
